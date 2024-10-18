@@ -1,5 +1,5 @@
-​import { createRouter, createWebHistory } from 'vue-router';
-import Login from '../views/Login.vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import Login from '../views/LoginPage.vue';
 import PortfolioProfile from '../views/PortfolioProfile.vue';
 import PortfolioShowcase from '../views/PortfolioShowcase.vue';
 import PortfolioContact from '../views/PortfolioContact.vue';
