@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'; // Assuming your NavBar is in a components folder
+import NavBar from './components/NavBar.vue'; // Adjust the path if necessary
 
 export default {
   name: 'App',
@@ -17,12 +17,15 @@ export default {
 </script>
 
 <style>
+/* Import Rubik font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@100;400;500;700&display=swap');
+
 /* Global Styles */
-body {
-  font-family: 'Raleway', sans-serif; /* Apply Rubik font globally */
-  margin: 0;
-  padding: 0;
-  background-color: #332f18; /* Light Cream */
+#app {
+  font-family: 'Rubik', sans-serif; /* Apply Rubik font globally */
+  margin: 0px;
+  padding: 0px;
+  background-color: #F6F8E2; /* Light Cream background */
   color: #3C3D42; /* Dark Charcoal for text */
 }
 
@@ -34,7 +37,28 @@ p {
   font-weight: 400; /* Regular weight for paragraph text */
 }
 
+/* Font weight for h1 */
 h1 {
- font-weight: 1800;
+  font-weight: 500; /* Medium weight for h1 */
+}
+
+/* Button styling */
+button {
+  background-color: #9CCD62; /* Tropical Kiwi Green */
+  color: #F6F8E2; /* Light Cream */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Link styling */
+a {
+  color: #9CCD62; /* Tropical Kiwi Green for links */
+}
+
+/* Additional global styles */
+a:hover {
+  color: #3C3D42; /* Dark Charcoal on hover */
 }
 </style>
