@@ -18,4 +18,6 @@ const app = createApp(App);
 app.use(BootstrapVue);
 app.use(IconsPlugin);
 
+app.use(root);
 app.mount('#app');
+
