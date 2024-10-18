@@ -19,10 +19,10 @@ export default {
 <style>
 /* Global Styles */
 body {
-  font-family: 'Rubik', sans-serif; /* Set global font to Rubik */
+  /*font-family: 'Rubik', sans-serif;*/font-family: 'Playfair Display', serif; /* Apply Rubik font globally */
   margin: 0;
   padding: 0;
-  background-color: #F6F8E2; /* Light Cream */
+  background-color: #E0DDCA; /* Light Cream */
   color: #3C3D42; /* Dark Charcoal for text */
 }
 
@@ -32,5 +32,9 @@ h1, h2, h3 {
 
 p {
   font-weight: 400; /* Regular weight for paragraph text */
+}
+
+h1 {
+ font-weight: 800;
 }
 </style>
