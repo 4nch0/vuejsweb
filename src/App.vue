@@ -1,64 +1,82 @@
 <template>
-  <div id="app">
-    <NavBar />
+  <div id="app" :class="currentTheme">
     <router-view />
+    <button class="theme-toggle-btn" @click="toggleTheme">
+      <i class="fas" :class="currentTheme === 'light-theme' ? 'fa-sun' : 'fa-moon'"></i>
+    </button>
   </div>
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'; // Adjust the path if necessary
-
 export default {
-  name: 'App',
-  components: {
-    NavBar
-  }
+  data() {
+    return {
+      currentTheme: 'light-theme', // Default theme
+    };
+  },
+  methods: {
+    toggleTheme() {
+      this.currentTheme = this.currentTheme === 'light-theme' ? 'dark-theme' : 'light-theme';
+    },
+  },
 };
 </script>
 
 <style>
-/* Import Rubik font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@100;400;500;700&display=swap');
 
-/* Global Styles */
 #app {
-  font-family: 'Rubik', sans-serif; /* Apply Rubik font globally */
-  margin: 0px;
-  padding: 0px;
-  background-color: #F6F8E2; /* Light Cream background */
-  color: #3C3D42; /* Dark Charcoal for text */
+  font-family: 'Rubik', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Full height for background effect */
+  transition: background 0.5s ease; /* Smooth transition for background */
 }
 
-h1, h2, h3 {
-  color: #3C3D42; /* Use Dark Charcoal for headings */
+.light-theme {
+  --primary-bg-color: linear-gradient(135deg, #E0DDCA 35%, #9ccd62 65%); /* Light Gradient */
+  --primary-text-color: #3C3D42; 
+  --accent-color: #9CCD62; 
+  --secondary-color: #E0DDCA; 
 }
 
-p {
-  font-weight: 400; /* Regular weight for paragraph text */
+.dark-theme {
+  --primary-bg-color: linear-gradient(45deg, #E0DDCA 15%, #1E1E1E 85%); /* Dark Gradient */
+  --primary-text-color: #F6F8E2; 
+  --accent-color: #9CCD62; 
+  --secondary-color: #E0DDCA; 
 }
 
-/* Font weight for h1 */
-h1 {
-  font-weight: 500; /* Medium weight for h1 */
+body {
+  background: var(--primary-bg-color);
+  color: var(--primary-text-color);
 }
 
-/* Button styling */
-button {
-  background-color: #9CCD62; /* Tropical Kiwi Green */
-  color: #F6F8E2; /* Light Cream */
+.theme-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--accent-color);
+  color: var(--primary-text-color);
   border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
+  transition: background-color 0.35s, transform 0.3s; /* Add transition for button */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
 }
 
-/* Link styling */
-a {
-  color: #9CCD62; /* Tropical Kiwi Green for links */
+.theme-toggle-btn:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.1); /* Slightly enlarge button on hover */
 }
 
-/* Additional global styles */
-a:hover {
-  color: #3C3D42; /* Dark Charcoal on hover */
+.theme-toggle-btn .fas {
+  font-size: 20px;
+  transition: color 0.3s; /* Smooth transition for icon color */
 }
 </style>

@@ -6,7 +6,8 @@ import PortfolioContact from '../views/PortfolioContact.vue';
 import PortfolioCreative from '../views/PortfolioCreative.vue';
 
 const routes = [
-  { path: '/login', component: Login },
+  { path: '/', redirect: '/login' },
+  { path: '/login', component: Login, meta:{hideNavBar:true} },
   { path: '/portfolio/profile', component: PortfolioProfile },
   { path: '/portfolio/showcase', component: PortfolioShowcase },
   { path: '/portfolio/contact', component: PortfolioContact },
@@ -14,7 +15,7 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(process.env.BASE_URL),
     routes,
   });
   
