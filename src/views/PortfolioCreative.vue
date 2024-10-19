@@ -1,5 +1,5 @@
 <template>
-  <div class="typing-container">
+  <div :class="['typing-container', currentTheme]">
     <h1>Type Anything!</h1>
     <textarea
       v-model="text"
@@ -26,16 +26,21 @@ export default {
         new Audio(require('@/assets/1.mp3')),
         new Audio(require('@/assets/2.mp3')),
         new Audio(require('@/assets/3.mp3')),
+        new Audio(require('@/assets/4.mp3')),
+        new Audio(require('@/assets/5.mp3')),
+        new Audio(require('@/assets/6.mp3')),
         new Audio(require('@/assets/7.mp3')),
         new Audio(require('@/assets/8.mp3')),
         new Audio(require('@/assets/9.mp3')),
         new Audio(require('@/assets/10.mp3')),
-        new Audio(require('@/assets/4.mp3')),
-        new Audio(require('@/assets/5.mp3')),
-        new Audio(require('@/assets/6.mp3')),
       ],
       bursts: [],
     };
+  },
+  computed: {
+    currentTheme() {
+      return this.$root.currentTheme; // Access the current theme from the root instance
+    },
   },
   methods: {
     handleKeydown(event) {
@@ -84,8 +89,17 @@ export default {
   padding: 20px; /* Add padding for spacing */
   border: 2px solid #9CCD62; /* Border color matching your theme */
   border-radius: 10px; /* Rounded corners */
-  background-color: #F6F8E2; /* Light background color for contrast */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.light-theme {
+  background-color: #F6F8E2; /* Light background color */
+  color: #3C3D42; /* Light text color */
+}
+
+.dark-theme {
+  background-color: #3C3D42; /* Dark background color */
+  color: #F6F8E2; /* Dark text color */
 }
 
 textarea {
