@@ -135,7 +135,7 @@ export default {
 }
 
 .custom-btn:hover {
-  background-color: var(--primary-text-color);
+  background-color: #9ccd62;
   color: var(--primary-bg-color);
   transform: scale(1.05); /* Slight enlargement on hover */
 }

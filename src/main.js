@@ -1,17 +1,20 @@
-//import { createApp } from 'vue'
-//import App from './App.vue'
-
-//createApp(App).mount('#app')
-
 import { createApp } from 'vue';
 import App from './App.vue';
-import router from "./router"
+import router from './router';
 import 'bootstrap/dist/css/bootstrap.css';
-import './App.vue'; // Your global styles should be here
+import ThemeToggle from './components/ThemeToggle.vue'; // Adjust the path if necessary
 
-//createApp(App) as a variable
+// Create the app instance
 const app = createApp(App);
 
-app.use(router);
-app.mount('#app');
+// Register ThemeToggle globally
+app.component('ThemeToggle', ThemeToggle);
 
+// Set the default theme on a reactive property
+app.config.globalProperties.currentTheme = 'light-theme'; // Default theme
+
+// Use the router
+app.use(router);
+
+// Mount the app
+app.mount('#app');

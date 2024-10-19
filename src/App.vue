@@ -1,19 +1,19 @@
 <template>
   <div id="app" :class="currentTheme">
-    <NavBar v-if="!shouldHideNavBar" /> <!-- Show NavBar unless it's hidden based on the route -->
+    <NavBar v-if="!shouldHideNavBar" />
     <router-view />
-    <button class="theme-toggle-btn" @click="toggleTheme">
-      <i class="fas" :class="currentTheme === 'light-theme' ? 'fa-sun' : 'fa-moon'"></i>
-    </button>
+    <ThemeToggle :currentTheme="currentTheme" @themeToggle="ThemeToggle" />
   </div>
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'; // Adjust the path as necessary
+import NavBar from './components/NavBar.vue';
+import ThemeToggle from './components/ThemeToggle.vue'; // Import the new ThemeToggle component
 
 export default {
   components: {
     NavBar,
+    ThemeToggle,
   },
   data() {
     return {
@@ -22,11 +22,11 @@ export default {
   },
   computed: {
     shouldHideNavBar() {
-      return this.$route.meta.hideNavBar === true && this.$route.name !== 'Login'; // Allow NavBar on Login page
+      return this.$route.meta.hideNavBar === true && this.$route.name !== 'Login';
     },
   },
   methods: {
-    toggleTheme() {
+    ThemeToggle() {
       this.currentTheme = this.currentTheme === 'light-theme' ? 'dark-theme' : 'light-theme';
     },
   },
@@ -47,15 +47,11 @@ export default {
 .light-theme {
   --primary-bg-color: linear-gradient(135deg, #E0DDCA 35%, #9ccd62 65%); /* Light Gradient */
   --primary-text-color: #3C3D42; 
-  --accent-color: #9CCD62; 
-  --secondary-color: #E0DDCA; 
 }
 
 .dark-theme {
   --primary-bg-color: linear-gradient(60deg, #1E1E1E 15%,  #E0DDCA 85%); /* Dark Gradient */
   --primary-text-color: #F6F8E2; 
-  --accent-color: #9CCD62; 
-  --secondary-color: #E0DDCA; 
 }
 
 body {
@@ -63,31 +59,14 @@ body {
   color: var(--primary-text-color);
 }
 
-.theme-toggle-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: var(--accent-color);
-  color: var(--primary-text-color);
-  border: none;
-  border-radius: 50%;
-  width: 95px;
-  height: 95px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.35s, transform 0.3s; /* Add transition for button */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+.light-theme {
+  background-color: #f6f8e2; /* Light theme background */
+  color: #3C3D42; /* Light theme text color */
 }
 
-.theme-toggle-btn:hover {
-  background-color: var(--secondary-color);
-  transform: scale(1.1); /* Slightly enlarge button on hover */
+.dark-theme {
+  background-color: #3C3D42; /* Dark theme background */
+  color: #F6F8E2; /* Dark theme text color */
 }
 
-.theme-toggle-btn .fas {
-  font-size: 27px;
-  transition: color 0.3s; /* Smooth transition for icon color */
-}
 </style>
