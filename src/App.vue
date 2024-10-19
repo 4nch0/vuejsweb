@@ -1,5 +1,6 @@
 <template>
   <div id="app" :class="currentTheme">
+    <NavBar v-if="!shouldHideNavBar" /> <!-- Show NavBar unless it's hidden based on the route -->
     <router-view />
     <button class="theme-toggle-btn" @click="toggleTheme">
       <i class="fas" :class="currentTheme === 'light-theme' ? 'fa-sun' : 'fa-moon'"></i>
@@ -8,11 +9,21 @@
 </template>
 
 <script>
+import NavBar from './components/NavBar.vue'; // Adjust the path as necessary
+
 export default {
+  components: {
+    NavBar,
+  },
   data() {
     return {
       currentTheme: 'light-theme', // Default theme
     };
+  },
+  computed: {
+    shouldHideNavBar() {
+      return this.$route.meta.hideNavBar === true && this.$route.name !== 'Login'; // Allow NavBar on Login page
+    },
   },
   methods: {
     toggleTheme() {
@@ -41,7 +52,7 @@ export default {
 }
 
 .dark-theme {
-  --primary-bg-color: linear-gradient(45deg, #E0DDCA 15%, #1E1E1E 85%); /* Dark Gradient */
+  --primary-bg-color: linear-gradient(60deg, #1E1E1E 15%,  #E0DDCA 85%); /* Dark Gradient */
   --primary-text-color: #F6F8E2; 
   --accent-color: #9CCD62; 
   --secondary-color: #E0DDCA; 
@@ -60,8 +71,8 @@ body {
   color: var(--primary-text-color);
   border: none;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 95px;
+  height: 95px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,7 +87,7 @@ body {
 }
 
 .theme-toggle-btn .fas {
-  font-size: 20px;
+  font-size: 27px;
   transition: color 0.3s; /* Smooth transition for icon color */
 }
 </style>

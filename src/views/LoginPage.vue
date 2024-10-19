@@ -38,6 +38,7 @@
         <button type="submit" class="btn custom-btn w-100">
           <i class="fas fa-sign-in-alt"></i> Login
         </button>
+        <p v-if="errorMessage" class="text-danger text-center mt-2">{{ errorMessage }}</p>
       </form>
     </div>
   </div>
@@ -48,7 +49,8 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      errorMessage: '' // To display login error
     };
   },
   computed: {
@@ -58,8 +60,18 @@ export default {
   },
   methods: {
     handleLogin() {
-      console.log('Email:', this.email);
-      console.log('Password:', this.password);
+      // Predefined credentials
+      const validEmail = '4nch0@git.com'; // Change this to your desired email
+      const validPassword = '4nch0'; // Change this to your desired password
+
+      // Check if the input matches the predefined credentials
+      if (this.email === validEmail && this.password === validPassword) {
+        alert('Login successful!');
+        // Redirect to the specified URL
+        window.location.href = 'http://localhost:8080/portfolio/profile';
+      } else {
+        this.errorMessage = 'Invalid email or password. Please try again.';
+      }
     }
   }
 };
@@ -87,13 +99,13 @@ export default {
 
 /* Define colors based on the theme */
 .light-theme .custom-card {
-  background-color : #3C3D42;/* Light theme color */
+  background-color: #3C3D42; /* Light theme color */
   color: #F6F8E2;
 }
 
 .dark-theme .custom-card {
   background-color: rgba(255, 255, 255, 0.9); /* Dark theme color */
-  color: #3C3D42 /* Change text color for readability */
+  color: #3C3D42; /* Change text color for readability */
 }
 
 .login-heading {
@@ -126,5 +138,9 @@ export default {
   background-color: var(--primary-text-color);
   color: var(--primary-bg-color);
   transform: scale(1.05); /* Slight enlargement on hover */
+}
+
+.text-danger {
+  color: red; /* Style for error message */
 }
 </style>
